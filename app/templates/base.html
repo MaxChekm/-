@@ -1,12 +1,95 @@
+<!-- base.html -->
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}</title>
-    </head>
-    <body>
-        {% block content %}
-        {% endblock %}
-    </body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RGSU Wildberries{% endblock %}</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- === Хедер сайта === -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>RGSU Wildberries</h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- === Футер сайта === -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Колонка 1 -->
+            <div class="col">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="#">Частые вопросы</a></li>
+                    <li><a href="#">Юридическая информация</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 2 -->
+            <div class="col">
+                <h3>Продавцам и партнёрам</h3>
+                <ul>
+                    <li><a href="#">Продавать товары</a></li>
+                    <li><a href="#">Открыть пункт выдачи</a></li>
+                    <li><a href="#">Предложить помещение</a></li>
+                    <li><a href="#">Развозить грузы</a></li>
+                    <li><a href="#">Доставлять заказы</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 3 -->
+            <div class="col">
+                <h3>Наши проекты</h3>
+                <ul>
+                    <li><a href="#">WB Guru</a></li>
+                    <li><a href="#">WB Stream</a></li>
+                    <li><a href="#">WB Track</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 4 -->
+            <div class="col">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Пресс-служба</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Сообщить о мошенничестве</a></li>
+                    <li><a href="#">Социальные сети</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Копирайт -->
+        <div class="copyright">
+            <p>© RGSU Wildberries 2004–2025. Все права защищены.</p>
+            <p>Применяются рекомендательные технологии</p>
+        </div>
+    </div>
+</footer>
+
+</body>
 </html>

@@ -1,13 +1,37 @@
+<!-- index.html -->
 {% extends "base.html" %}
-{% block title %} {{ title }} {% endblock %}
+{% block title %}Каталог товаров | RGSU Wildberries{% endblock %}
 
 {% block content %}
-{% for product in products %}
-<div class="product">
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.price }}</p>
-    <p>{{ product.description }}</p>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-</div>
-{% endfor %}
+    <!-- Поиск товаров -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Поиск по названию или категории...">
+        <button onclick="filterProducts()">Найти</button>
+    </div>
+
+    <!-- Категории товаров -->
+    <div class="categories">
+        <h2>Категории</h2>
+        <div class="category-grid">
+            <a href="#" class="category-card">Электроника</a>
+            <a href="#" class="category-card">Одежда</a>
+            <a href="#" class="category-card">Обувь</a>
+            <a href="#" class="category-card">Аксессуары</a>
+            <a href="#" class="category-card">Книги</a>
+            <a href="#" class="category-card">Игрушки</a>
+        </div>
+    </div>
+
+    <!-- Карточки товаров -->
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200?text=Product+Image" alt="Товар 1">
+            <div class="product-info">
+                <h3>Название товара 1</h3>
+                <p class="product-description">Описание товара...</p>
+                <div class="product-price">1 000 ₽</div>
+            </div>
+        </div>
+        <!-- Добавь больше товаров -->
+    </div>
 {% endblock %}
