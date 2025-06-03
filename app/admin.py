@@ -1,6 +1,15 @@
+# shop/admin.py
 from django.contrib import admin
+from .models import Category, Product
 
-from .models import Product, Category
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'icon')
+    fields = ('name', 'icon')
 
-admin.site.register(Product)
-admin.site.register(Category)
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'category')
+    list_filter = ('category',)
+    fields = ('name', 'description', 'price', 'category', 'image')

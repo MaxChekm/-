@@ -1,0 +1,244 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>RGSU Wildberries</title>
+    <style>
+        :root {
+            --primary-color: #6a0dad; /* Фиолетовый */
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+        }
+
+        .category-name {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .footer {
+            background-color: #f1f3f5;
+            text-align: left;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Хедер -->
+<header class="header">
+    <a href="#" class="logo">RGSU Wildberries</a>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Поиск по названию или категории...">
+        <button onclick="filterProducts()">Найти</button>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<div class="content">
+
+    <h2 style="margin-bottom: 20px;">Категории</h2>
+
+    <!-- Сетка категорий -->
+    <div class="category-grid">
+        {% for category in categories %}
+            <a href="{% url 'category_detail' category.id %}" class="category-card">
+                {% if category.icon %}
+                    <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon">
+                {% else %}
+                    <div class="category-icon">🖼️</div>
+                {% endif %}
+                <div class="category-name">{{ category.name }}</div>
+            </a>
+        {% empty %}
+            <p>Нет категорий</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+<!-- Футер -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>Покупателям</h3>
+            <ul>
+                <li><a href="#">Частые вопросы</a></li>
+                <li><a href="#">Юридическая информация</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Продавцам и партнёрам</h3>
+            <ul>
+                <li><a href="#">Продавать товары</a></li>
+                <li><a href="#">Открыть пункт выдачи</a></li>
+                <li><a href="#">Предложить помещение</a></li>
+                <li><a href="#">Развозить грузы</a></li>
+                <li><a href="#">Доставлять заказы</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Наши проекты</h3>
+            <ul>
+                <li><a href="#">WB Guru</a></li>
+                <li><a href="#">WB Stream</a></li>
+                <li><a href="#">WB Track</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Компания</h3>
+            <ul>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Пресс-служба</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Вакансии</a></li>
+                <li><a href="#">Сообщить о мошенничестве</a></li>
+                <li><a href="#">Социальные сети</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>© Wildberries 2004–2025. Все права защищены.</p>
+        <p>Применяются рекомендательные технологии</p>
+    </div>
+</footer>
+
+<!-- JS для поиска -->
+<script>
+    function filterProducts() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const name = product.getAttribute('data-name').toLowerCase();
+            const category = product.getAttribute('data-category').toLowerCase();
+
+            if (name.includes(query) || category.includes(query)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
