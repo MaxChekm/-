@@ -1,14 +1,8 @@
-<!-- index.html -->
 {% extends "base.html" %}
-{% block title %}Каталог товаров | RGSU Wildberries{% endblock %}
+{% block title %}Главная страница | RGSU Wildberries{% endblock %}
 
 {% block content %}
-    <!-- Поиск товаров -->
-    <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Поиск по названию или категории...">
-        <button onclick="filterProducts()">Найти</button>
-    </div>
-
+ 
     <!-- Категории товаров -->
     <div class="categories">
         <h2>Категории</h2>
@@ -23,15 +17,60 @@
     </div>
 
     <!-- Карточки товаров -->
-    <div class="product-grid">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x200?text=Product+Image" alt="Товар 1">
+    <div class="product-grid" id="product-grid">
+        <div class="product-card" data-name="Смартфон Galaxy S23" data-category="электроника">
+            <img src="https://via.placeholder.com/300x200?text=Смартфон" alt="Смартфон Galaxy S23">
             <div class="product-info">
-                <h3>Название товара 1</h3>
-                <p class="product-description">Описание товара...</p>
-                <div class="product-price">1 000 ₽</div>
+                <h3>Смартфон Galaxy S23</h3>
+                <p class="product-description">Современный смартфон с мощным процессором и камерой 108 МП.</p>
+                <div class="product-price">79 990 ₽</div>
             </div>
         </div>
-        <!-- Добавь больше товаров -->
+
+        <div class="product-card" data-name="Футболка хлопковая" data-category="одежда">
+            <img src="https://via.placeholder.com/300x200?text=Футболка" alt="Футболка хлопковая">
+            <div class="product-info">
+                <h3>Футболка хлопковая</h3>
+                <p class="product-description">Удобная футболка из натурального хлопка, универсальный размер.</p>
+                <div class="product-price">990 ₽</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="Туфли на шпильке" data-category="обувь">
+            <img src="https://via.placeholder.com/300x200?text=Туфли" alt="Туфли на шпильке">
+            <div class="product-info">
+                <h3>Туфли на шпильке</h3>
+                <p class="product-description">Элегантные туфли для вечеринок и офиса.</p>
+                <div class="product-price">3 500 ₽</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="Сумка через плечо" data-category="аксессуары">
+            <img src="https://via.placeholder.com/300x200?text=Сумка" alt="Сумка через плечо">
+            <div class="product-info">
+                <h3>Сумка через плечо</h3>
+                <p class="product-description">Модная сумка с металлической фурнитурой и отделением для телефона.</p>
+                <div class="product-price">2 200 ₽</div>
+            </div>
+        </div>
     </div>
+
+    <!-- JS для поиска -->
+    <script>
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const name = product.getAttribute('data-name').toLowerCase();
+                const category = product.getAttribute('data-category').toLowerCase();
+
+                if (name.includes(query) || category.includes(query)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
 {% endblock %}
