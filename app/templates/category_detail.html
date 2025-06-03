@@ -199,9 +199,9 @@
             <div class="product-card"
                  data-name="{{ product.name }}"
                  data-category="{{ product.category.name }}">
-                {% if product.image %}
-                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
-                {% endif %}
+               {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+{% endif %}
                 <div class="product-info">
                     <div class="product-title">{{ product.name }}</div>
                     <div class="product-price">{{ product.price }} ₽</div>

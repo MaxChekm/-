@@ -1,20 +1,19 @@
-# shop/models.py
 from django.db import models
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Категория")
-    icon = models.URLField(blank=True, null=True, verbose_name="Иконка (URL)")
+    name = models.CharField(max_length=100)
+    icon = models.ImageField(upload_to='icons/', blank=True, null=True)  # <-- вместо URLField
 
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Название")
-    description = models.TextField(verbose_name="Описание")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
-    image = models.URLField(blank=True, null=True, verbose_name="Фото")
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products/', blank=True, null=True)  # <-- вместо URLField
 
     def __str__(self):
         return self.name

@@ -158,10 +158,10 @@
         {% for category in categories %}
             <a href="{% url 'category_detail' category.id %}" class="category-card">
                 {% if category.icon %}
-                    <img src="{{ category.icon }}" alt="{{ category.name }}" class="category-icon">
-                {% else %}
-                    <div class="category-icon">🖼️</div>
-                {% endif %}
+    <img src="{{ category.icon.url }}" alt="{{ category.name }}" class="category-icon">
+{% else %}
+    <div class="category-icon">🖼️</div>
+{% endif %}
                 <div class="category-name">{{ category.name }}</div>
             </a>
         {% empty %}
