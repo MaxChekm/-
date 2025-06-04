@@ -230,6 +230,15 @@
     <div class="search-bar">
         <input type="text" id="search-input" placeholder="Поиск по названию или категории...">
         <button onclick="filterProducts()">Найти</button>
+        <nav class="nav">
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">{{ user.username }}</a>
+        <a href="{% url 'logout' %}">Выход</a>
+    {% else %}
+        <a href="{% url 'login' %}">Вход</a>
+        <a href="{% url 'register' %}">Регистрация</a>
+    {% endif %}
+</nav>
     </div>
 </header>
 
@@ -244,6 +253,7 @@
                  data-name="{{ product.name }}"
                  data-category="{{ product.category.name }}">
                {% if product.image %}
+               
     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
 {% endif %}
                 <div class="product-info">

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Профиль | RGSU Wildberries{% endblock %}
+
+{% block content %}
+    <h2>Привет, {{ user.username }}!</h2>
+    <a href="{% url 'logout' %}">Выход</a>
+    <br><br>
+    <a href="{% url 'cart' %}">🛒 Перейти в корзину</a>
+{% endblock %}

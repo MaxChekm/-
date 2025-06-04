@@ -1,0 +1,23 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body class="page">
+    {% include "category_detail.html" %}
+
+    <div class="content">
+        <h2>Регистрация</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже зарегистрирован? <a href="{% url 'login' %}">Войти</a></p>
+    </div>
+
+    {% include "category_detail.html" %}
+</body>
+</html>

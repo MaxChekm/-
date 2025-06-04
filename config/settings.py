@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
+    'django.contrib.humanize',  # Для красивого отображения цен (например: 1000 → 1 000)
+    'accounts',                 # Это новое приложение для регистрации и корзины
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,13 @@ TEMPLATES_DIR = BASE_DIR / "templates"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# Добавь это внизу settings.py
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.INFO: '',
+    'success': 'alert-success',
+    'warning': 'alert-warning',
+    'error': 'alert-danger',
+    'debug': 'alert-info'
+}
