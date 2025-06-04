@@ -5,178 +5,222 @@
     <meta charset="UTF-8">
     <title>{{ category.name }} | RGSU Wildberries</title>
     <style>
-        .pagination-nav a:hover {
-    background-color: #b33c3c;
-}
-        :root {
-            --primary-color: #6a0dad; /* Фиолетовый */
-            --bg-light: #f8f9fa;
-            --text-dark: #333;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
+    /* === Стиль при наведении на ссылки пагинации === */
+    .pagination-nav a:hover {
+        background-color: #b33c3c; /* Темно-красный фон при наведении */
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* === Глобальные переменные (цвета, тени и т.д.) === */
+    :root {
+        --primary-color: #6a0dad;     /* Основной цвет сайта (фиолетовый) */
+        --bg-light: #f8f9fa;          /* Светлый фон страницы */
+        --text-dark: #333;            /* Цвет основного текста */
+        --card-shadow: 0 2px 8px rgba(0,0,0,0.07); /* Тень для карточек */
+    }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+    /* === Обнуление стандартных стилей браузера === */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;       /* Чтобы padding не влиял на размер элементов */
+    }
 
-        .header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* === Базовые стили для всего сайта === */
+    body {
+        font-family: 'Segoe UI', sans-serif; /* Читаемый шрифт */
+        background-color: var(--bg-light);   /* Фон из переменной */
+        color: var(--text-dark);             /* Цвет текста из переменной */
+        line-height: 1.6;                    /* Межстрочный интервал */
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-        }
+    /* === Шапка сайта (header) === */
+    .header {
+        background-color: var(--primary-color); /* Фиолетовый фон */
+        color: white;                          /* Белый текст */
+        padding: 15px 30px;                    /* Отступы */
+        display: flex;
+        justify-content: space-between;         /* Раздвигаем логотип и меню */
+        align-items: center;                   /* Центрируем по вертикали */
+    }
 
-        .search-bar {
-            display: flex;
-            gap: 10px;
-        }
+    /* === Логотип сайта === */
+    .logo {
+        font-size: 1.5rem;                     /* Размер шрифта */
+        font-weight: bold;                     /* Жирный текст */
+        text-decoration: none;                 /* Без подчёркивания */
+        color: white;                          /* Цвет логотипа */
+    }
 
-        .search-bar input {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    /* === Поисковая панель === */
+    .search-bar {
+        display: flex;                         /* Располагаем элементы в строку */
+        gap: 10px;                            /* Отступ между полем и кнопкой */
+    }
 
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: #fff;
-            color: var(--primary-color);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    /* === Поле ввода поиска === */
+    .search-bar input {
+        padding: 10px;
+        width: 300px;                         /* Ширина поля поиска */
+        border: 1px solid #ccc;                /* Серая рамка */
+        border-radius: 4px;                    /* Закруглённые углы */
+    }
 
-        .content {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+    /* === Кнопка поиска === */
+    .search-bar button {
+        padding: 10px 20px;
+        background-color: #fff;                /* Белый фон кнопки */
+        color: var(--primary-color);           /* Цвет текста — фиолетовый */
+        border: none;                          /* Убираем стандартную рамку */
+        border-radius: 4px;                    /* Закруглённые углы */
+        cursor: pointer;                       /* Курсор в виде руки */
+    }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+    /* === Основной контент сайта (товары, категории и т.п.) === */
+    .content {
+        max-width: 1200px;                    /* Максимальная ширина контента */
+        margin: 30px auto;                    /* Отступ сверху/снизу и центровка по горизонтали */
+        padding: 0 20px;                     /* Внутренние отступы */
+    }
 
-        .product-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-        }
+    /* === Сетка товаров (адаптивная) === */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 250px)); /* Карточки всегда шириной 250px */
+        gap: 20px;                           /* Отступы между карточками */
+    }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+    /* === Карточка товара === */
+    .product-card {
+        background-color: white;               /* Белый фон карточки */
+        border-radius: 8px;                    /* Закруглённые углы */
+        overflow: hidden;                      /* Прячем части, выходящие за границы */
+        box-shadow: var(--card-shadow);       /* Добавляем тень */
+        transition: transform 0.3s ease;       /* Плавный эффект при наведении */
+    }
+ .category-card {
+        background-color: white;               /* Белый фон карточки */
+        border-radius: 8px;                    /* Закруглённые углы */
+        overflow: hidden;                      /* Прячем части, выходящие за границы */
+        box-shadow: var(--card-shadow);       /* Добавляем тень */
+        transition: transform 0.3s ease;       /* Плавный эффект при наведении */
+    }
+  /* === Эффект при наведении на карточку товара === */
+    .product-card:hover {
+        transform: translateY(-5px);           /* Поднимаем карточку немного вверх */
+    }
 
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    /* === Эффект при наведении на карточку товара === */
+    .category-card:hover {
+        transform: translateY(-5px);           /* Поднимаем карточку немного вверх */
+    }
+    /* === Изображение товара в карточке === */
+    .category-image {
+        width: 100%;                         /* Ширина фото = ширине карточки */
+        height: 200px;                       /* Высота фото */
+        object-fit: cover;                    /* Обрезаем, чтобы заполнить область */
+    }
 
-        .product-info {
-            padding: 15px;
-        }
+    /* === Изображение товара в карточке === */
+    .product-image {
+        width: 100%;                         /* Ширина фото = ширине карточки */
+        height: 200px;                       /* Высота фото */
+        object-fit: cover;                    /* Обрезаем, чтобы заполнить область */
+    }
 
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
+    /* === Информация внутри карточки товара === */
+    .product-info {
+        padding: 15px;                       /* Внутренние отступы */
+    }
 
-        .product-price {
-            color: green;
-            font-weight: bold;
-        }
+    /* === Название товара === */
+    .product-title {
+        font-size: 1.2rem;                    /* Размер заголовка */
+        margin-bottom: 10px;                  /* Отступ снизу */
+    }
 
-        .pagination-nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
+    /* === Цена товара === */
+    .product-price {
+        color: green;                         /* Цвет цены */
+        font-weight: bold;                    /* Жирный текст */
+    }
 
-        .pagination-nav a,
-        .pagination-nav span {
-            padding: 8px 12px;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+    /* === Пагинация (навигация по страницам) === */
+    .pagination-nav {
+        display: flex;
+        justify-content: center;              /* Центрируем пагинацию */
+        gap: 10px;                          /* Отступы между кнопками */
+        margin-top: 30px;                    /* Отступ сверху */
+    }
 
-        .pagination-nav span.bolder {
-            font-weight: bold;
-        }
+    /* === Ссылки и номера страниц в пагинации === */
+    .pagination-nav a,
+    .pagination-nav span {
+        padding: 8px 12px;
+        text-decoration: none;                /* Без подчёркивания */
+        color: #333;                         /* Тёмный текст */
+        border: 1px solid #ddd;               /* Лёгкая рамка */
+        border-radius: 4px;                   /* Закруглённые углы */
+    }
 
-        .back-link {
-            display: block;
-            margin: 20px 0 40px 0;
-            text-align: center;
-            font-size: 1rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
+    /* === Активный номер страницы в пагинации === */
+    .pagination-nav span.bolder {
+        font-weight: bold;                    /* Делаем активный пункт жирным */
+    }
 
-        /* === Футер === */
-        .footer {
-            background-color: #f1f3f5;
-            text-align: left;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-        }
+    /* === Ссылка "Назад" === */
+    .back-link {
+        display: block;                       /* Делаем ссылку блочным элементом */
+        margin: 20px 0 40px 0;              /* Отступы */
+        text-align: center;                   /* Центрируем текст */
+        font-size: 1rem;                      /* Размер шрифта */
+        color: var(--primary-color);          /* Цвет ссылки — фиолетовый */
+        text-decoration: none;                /* Без подчёркивания */
+    }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+    /* === Футер сайта (всегда внизу) === */
+    .footer {
+        background-color: #f1f3f5;            /* Светло-серый фон футера */
+        text-align: left;                     /* Текст слева */
+        padding: 40px 20px;                 /* Отступы вокруг футера */
+        font-size: 0.9rem;                   /* Меньше размер шрифта */
+        color: var(--primary-color);          /* Цвет текста — фиолетовый */
+    }
 
-        .footer-col h3 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
+    /* === Контейнер для содержимого футера === */
+    .footer-container {
+        max-width: 1200px;                   /* Максимальная ширина */
+        margin: 0 auto;                      /* Центрируем */
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);/* Четыре колонки одинаковой ширины */
+        gap: 20px;                         /* Отступы между колонками */
+    }
 
-        .footer-col ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    /* === Заголовки в колонках футера === */
+    .footer-col h3 {
+        font-size: 1rem;                     /* Размер заголовка */
+        margin-bottom: 10px;                 /* Отступ снизу */
+    }
 
-        .footer-col ul li {
-            margin-bottom: 8px;
-        }
+    /* === Списки ссылок в футере === */
+    .footer-col ul {
+        list-style: none;                    /* Убираем маркеры списка */
+        padding-left: 0;                     /* Убираем внутренний отступ */
+    }
 
-        .copyright {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.85rem;
-            color: var(--primary-color);
-            border-top: 1px solid #ddd;
-        }
-    </style>
+    /* === Элементы списка в футере === */
+    .footer-col ul li {
+        margin-bottom: 8px;                  /* Отступ снизу у каждого пункта */
+    }
+
+    /* === Копирайт в нижней части === */
+    .copyright {
+        text-align: center;                  /* Центрируем текст */
+        padding: 20px;                       /* Отступы */
+        font-size: 0.85rem;                  /* Маленький шрифт */
+        color: var(--primary-color);          /* Цвет текста — фиолетовый */
+        border-top: 1px solid #ddd;           /* Горизонтальная линия сверху */
+    }
+</style>
 </head>
 <body>
 
